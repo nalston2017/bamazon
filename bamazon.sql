@@ -7,7 +7,7 @@ USE bamazon;
 
 -- Create product table --
 CREATE TABLE products (
-  item_id INT AUTO_INCREMENT(4) NOT NULL,
+  item_id INT(4) ZEROFILL AUTO_INCREMENT NOT NULL,
   product_name VARCHAR(75) NOT NULL,
   department_name VARCHAR(50) NOT NULL,
   price DECIMAL(10,2) NOT NULL,
@@ -22,4 +22,10 @@ VALUES
 ("Military Grade Gas Mask", "Prepper Supplies", 40, 60),
 ("Hazmat Suit", "Prepper Supplies", 100, 75),
 ("Fear and Loathing in Las Vegas", "Books", 16, 100),
-("Ready Player One", )
+("Ready Player One", "Books", 16, 42),
+("Final Fantasy VII", "Video Games", 12, 10),
+("Breaking Bad Season 1", "DVDs", 30, 10),
+("Monopoly - The Walking Dead Edition", "Board Games", 100, 25),
+("Solar Powered Water Purifier", "Prepper Supplies", 50, 25),
+("Settlers of Catan", "Board Games", 50, 35),
+("Kingdon Hearts II", "Video Games", 35, 50);
