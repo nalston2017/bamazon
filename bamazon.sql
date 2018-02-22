@@ -12,7 +12,7 @@ CREATE TABLE products (
   department_name VARCHAR(50) NOT NULL,
   price DECIMAL(10,2) NOT NULL,
   stock_quantity INT(5) NOT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (item_id)
 );
 
 -- Ten Original Products --
@@ -29,3 +29,5 @@ VALUES
 ("Solar Powered Water Purifier", "Prepper Supplies", 50, 25),
 ("Settlers of Catan", "Board Games", 50, 35),
 ("Kingdon Hearts II", "Video Games", 35, 50);
+
+SELECT * FROM products;
