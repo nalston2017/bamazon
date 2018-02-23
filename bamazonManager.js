@@ -21,7 +21,7 @@ function introduction() {
   inquirer.prompt({
     name: "choice",
     type: "list",
-    message: "What would you like to check today?"
+    message: "What would you like to do?",
     choices: ["View Products for Sale",
       "View Low Inventory Less than 35 items in stock",
       "Add to Inventory Quantity",
