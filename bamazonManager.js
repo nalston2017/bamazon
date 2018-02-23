@@ -57,6 +57,16 @@ function viewProducts() {
 };
 
 function inventory() {
+connection.query("SELECT * FROM products WHERE stock_quantity <= 35", function(err, res) {
+if (err) throw err;
+for (let i = 0; i < res.length; i++) {
+  console.log(res[i].item_id + "- Product Name: " + res[i].product_name + " Price: " + res[i].price + "\n");
+}
+});
+connection.end();
+}
+
+function addInventory() {
   inquirer.prompt([{
       name: "item",
       type: "input",
@@ -86,10 +96,11 @@ function inventory() {
       if (err) throw err;
       console.log("Products have been added.\n");
     });
-  });
-}
+  })
+  connection.end();
+};
 
-function addInventory() {
+function addProduct() {
   inquirer.prompt([{
       name: "department",
       type: "input",
@@ -124,14 +135,46 @@ function addInventory() {
     {
       name: "purchasePrice",
       type: "input",
-      message: "Enter the wholesale price.",
+      message: "Please enter the wholesale price.",
       validate: function(value) {
         if (isNaN(value) === false) {
           return true;
         }
         return false;
       }
-    }]).then(function(answer){
-
+    }]).then(fuinstanction(answer){
+var addedItem = answer.item;
+var deptItem = answer.department.toLowerCase();
+var newPrice = parseFloat(answer.price);
+var newQuantity = parseInt(answer.quantity);
+var newPurchasePrice = parseFloat(answer.purchasePrice);
+departments(addedItem, deptItem, newPrice, newQuantity, newPurchasePrice);
     })
+    connection.end();
+};
+
+function departments(addedItem, deptItem, newPrice, newQuantity, newPurchasePrice) {
+connection.query("SELECT * FROM departments", function(err, res){
+  if(err) throw err;
+  var array = [];
+  for (let i = 0; i < array.length; i++) {
+    array[i].push(res[i].department_name);
+  }
+  if(array.includes(deptItem)){
+    var query = connection.query("INSERT INTO products SET ?",
+  {
+    product_name: addedItem,
+    department_name: deptItem,
+    price: newPrice,
+    stock_quantity: newQuantity,
+    purchasePrice: newPurchasePrice
+  }, function(err, res) {
+    if(err) throw err;
+    console.log("Changes have been added.\n");
+  });
+} else {
+  console.log("The changes have not made. Please check the input data for errors.");
 }
+})
+connection.end();
+};
