@@ -42,7 +42,7 @@ var introduction = function() {
     } else {
       conclusion();
     }
-  })
+  });
 }
 
 var productsList = function() {
