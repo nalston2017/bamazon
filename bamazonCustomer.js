@@ -6,8 +6,8 @@ var idNumber;
 var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
-  user: "Admin",
-  password: "",
+  user: "root",
+  password: db_password,
   database: "bamazon"
 });
 
